@@ -18,7 +18,7 @@
         android:background="@drawable/round_button"
         android:gravity="center_vertical|center_horizontal"
         android:text="Push-to-Talk"
-        android:textColor="#000"
+        android:textColor="@color/green"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,6 +27,7 @@
     <TextView
         android:id="@+id/ChannelSelect"
         android:text="Channel Select"
+        android:background="@color/gold"
         android:textSize="32sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -46,7 +47,7 @@
         android:layout_marginStart="36dp"
         android:layout_marginTop="76dp"
         android:text="Call\nCampus Food"
-        android:background="@color/colorPrimary"
+        android:background="@color/gold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/PTT" />
 
@@ -58,7 +59,7 @@
         android:layout_marginStart="50dp"
         android:layout_marginEnd="36dp"
         android:text="Call Campus\nSecurity"
-        android:background="@color/colorPrimary"
+        android:background="@color/gold"
         app:layout_constraintStart_toEndOf="@+id/CallFood"
         app:layout_constraintBottom_toBottomOf="@+id/CallFood"
         app:layout_constraintTop_toBottomOf="@+id/PTT"
@@ -82,7 +83,7 @@
             android:id="@+id/ChannelOne"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
+            android:background="@color/green"
             android:layout_weight="1"
             android:text="1" />
 
@@ -90,7 +91,7 @@
             android:id="@+id/ChannelTwo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
+            android:background="@color/green"
             android:layout_weight="1"
             android:text="2" />
 
@@ -98,7 +99,7 @@
             android:id="@+id/ChannelThree"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
+            android:background="@color/green"
             android:layout_weight="1"
             android:text="3" />
 
@@ -106,7 +107,7 @@
             android:id="@+id/ChannelGlobal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
+            android:background="@color/green"
             android:layout_weight="1"
             android:text="Global" />
     </RadioGroup>
