@@ -8,14 +8,18 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.widget.Toast;
+import android.os.Bundle;
+import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
 
     private Button ptt, callFood, callCampo;
     private RadioButton channelOne, channelTwo, channelThree, globalChannel;
     private TextView channelSelect;
+    private View dialogView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,9 +31,9 @@ public class MainActivity extends AppCompatActivity {
 
         //OBJECT DECLARATIONS
         ptt = (Button) findViewById(R.id.PTT);
-        callFood= (Button) findViewById(R.id.callFood);
-        callCampo= (Button) findViewById(R.id.callCampo);
-        channelSelect= (TextView) findViewById(R.id.channelSelect);
+        callFood = (Button) findViewById(R.id.callFood);
+        callCampo = (Button) findViewById(R.id.callCampo);
+        channelSelect = (TextView) findViewById(R.id.channelSelect);
         channelOne = (RadioButton) findViewById(R.id.channelOne);
         channelTwo = (RadioButton) findViewById(R.id.channelTwo);
         channelThree = (RadioButton) findViewById(R.id.channelThree);
@@ -49,8 +53,7 @@ public class MainActivity extends AppCompatActivity {
         callCampo.setEnabled(true);
 
 
-        View.OnClickListener pushToTalk = new View.OnClickListener()
-        { //below will be what happens when play again button is pressed
+        View.OnClickListener pushToTalk = new View.OnClickListener() { //below will be what happens when play again button is pressed
             @Override
             public void onClick(View v) { //Might need to be something like on click and hold, idk yet
                 Button b = (Button) v; //This represents the button they pressed, use this to use the right one (ex- b.doAThing)
@@ -67,8 +70,7 @@ public class MainActivity extends AppCompatActivity {
                 //HAVE TO SET THEM BACK TO TRUE ONCE PTT BUTTON IS RELEASED
             }
         };
-        View.OnClickListener channelSelect = new View.OnClickListener()
-        { //below will be what happens when play again button is pressed
+        View.OnClickListener channelSelect = new View.OnClickListener() { //below will be what happens when play again button is pressed
             @Override
             public void onClick(View v) {
                 Button b = (Button) v; //This represents the button they pressed, use it to use the right one
@@ -83,15 +85,20 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
-        View.OnClickListener phoneCall = new View.OnClickListener()
-        { //below will be what happens when play again button is pressed
+        View.OnClickListener phoneCall = new View.OnClickListener() { //below will be what happens when play again button is pressed
             @Override
             public void onClick(View v) {
                 Button b = (Button) v; //This represents which button they pressed, use it to use the right one
                 //When they push a call button, this is where the stuff needs to be executed******
                 //Make a function to bring up the phone call-ey thing and use it here
+
+                if (b.getId() == R.id.callFood)
+                    dialogFood(dialogView);
+                else
+                    dialogCampo(dialogView);
             }
         };
+
 
         //ON-CLICK LISTENERS:
         ptt.setOnClickListener(pushToTalk);
@@ -103,6 +110,47 @@ public class MainActivity extends AppCompatActivity {
 
         callFood.setOnClickListener(phoneCall);
         callCampo.setOnClickListener(phoneCall);
-
     }
+
+
+    public void dialogCampo(View view) {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setMessage("Call Campus Security?");
+        alertDialogBuilder.setPositiveButton("Call",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        //open phone app with campo number here
+                    }
+                });
+
+        alertDialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {}
+        });
+
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }
+
+    public void dialogFood(View view) {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setMessage("Call Food Service?");
+        alertDialogBuilder.setPositiveButton("Call",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        //open phone app with food number here
+                    }
+                });
+
+        alertDialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {}
+        });
+
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }
+
 }
