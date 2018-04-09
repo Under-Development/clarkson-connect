@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Clarkson Connect</string>
     <string name="ptt">Push-to-Talk</string>
-    <string name="channel_select"> Channel Select </string>
+    <string name="channel_select">Channel Select</string>
     <string name="call_food">Call\nCampus\nFood</string>
     <string name="call_campo">Call\nCampus\nSecurity</string>
     <string name="channel_one">1</string>
