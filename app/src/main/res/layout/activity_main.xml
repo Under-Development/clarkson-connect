@@ -25,8 +25,8 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/ChannelSelect"
-        android:text="Channel Select"
+        android:id="@+id/channelSelect"
+        android:text=" Channel Select: "
         android:background="@color/gold"
         android:textSize="32sp"
         android:layout_width="wrap_content"
@@ -41,7 +41,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/CallFood"
+        android:id="@+id/callFood"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
@@ -52,7 +52,7 @@
         app:layout_constraintTop_toBottomOf="@+id/PTT" />
 
     <Button
-        android:id="@+id/CallCampo"
+        android:id="@+id/callCampo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="76dp"
@@ -60,8 +60,8 @@
         android:layout_marginEnd="36dp"
         android:text="Call Campus\nSecurity"
         android:background="@color/gold"
-        app:layout_constraintStart_toEndOf="@+id/CallFood"
-        app:layout_constraintBottom_toBottomOf="@+id/CallFood"
+        app:layout_constraintStart_toEndOf="@+id/callFood"
+        app:layout_constraintBottom_toBottomOf="@+id/callFood"
         app:layout_constraintTop_toBottomOf="@+id/PTT"
         app:layout_constraintEnd_toEndOf="parent"
          />
@@ -79,35 +79,35 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <Button
-            android:id="@+id/ChannelOne"
+        <RadioButton
+            android:id="@+id/channelOne"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/green"
+            android:background="@color/gold"
             android:layout_weight="1"
             android:text="1" />
 
-        <Button
-            android:id="@+id/ChannelTwo"
+        <RadioButton
+            android:id="@+id/channelTwo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/green"
+            android:background="@color/gold"
             android:layout_weight="1"
             android:text="2" />
 
-        <Button
-            android:id="@+id/ChannelThree"
+        <RadioButton
+            android:id="@+id/channelThree"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/green"
+            android:background="@color/gold"
             android:layout_weight="1"
             android:text="3" />
 
-        <Button
-            android:id="@+id/ChannelGlobal"
+        <RadioButton
+            android:id="@+id/globalChannel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/green"
+            android:background="@color/gold"
             android:layout_weight="1"
             android:text="Global" />
     </RadioGroup>
