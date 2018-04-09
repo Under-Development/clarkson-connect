@@ -3,5 +3,5 @@
     <font
         android:fontStyle="normal"
         android:fontWeight="400"
-        android:font="@font/timesNewRoman" />
+        android:font="@font/times_new_romantff" />
 </font-family>
