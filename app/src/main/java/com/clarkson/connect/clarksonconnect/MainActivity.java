@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -50,21 +51,35 @@ public class MainActivity extends AppCompatActivity {
         callCampo.setEnabled(true);
 
 
-        View.OnClickListener pushToTalk = new View.OnClickListener()
+        View.OnTouchListener pushToTalk = new View.OnTouchListener()
         { //below will be what happens when play again button is pressed
             @Override
-            public void onClick(View v) { //Might need to be something like on click and hold, idk yet
+            public boolean onTouch(View v, MotionEvent event) { //Might need to be something like on click and hold, idk yet
                 Button b = (Button) v; //This represents the button they pressed, use this to use the right one (ex- b.doAThing)
                 //When they push the ptt button, this is where the stuff needs to be executed
-                //function.function();
-                ptt.setBackgroundColor(Color.RED); //When they push the button
-                ptt.setText("Pressed");
-                channelOne.setEnabled(false); //Disable other buttons
-                channelTwo.setEnabled(false);
-                channelThree.setEnabled(false);
-                globalChannel.setEnabled(false);
-                callFood.setEnabled(false);
-                callCampo.setEnabled(false);
+                int action = event.getAction();
+                switch(action) {
+                    case MotionEvent.ACTION_DOWN:
+                        v.setPressed(true);
+                        channelOne.setEnabled(false); //Disable other buttons
+                        channelTwo.setEnabled(false);
+                        channelThree.setEnabled(false);
+                        globalChannel.setEnabled(false);
+                        callFood.setEnabled(false);
+                        callCampo.setEnabled(false);
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        v.setPressed(false);
+                        channelOne.setEnabled(true); //Disable other buttons
+                        channelTwo.setEnabled(true);
+                        channelThree.setEnabled(true);
+                        globalChannel.setEnabled(true);
+                        callFood.setEnabled(true);
+                        callCampo.setEnabled(true);
+                        break;
+                }
+
+                return true;
                 //HAVE TO SET THEM BACK TO TRUE ONCE PTT BUTTON IS RELEASED
             }
         };
@@ -75,7 +90,17 @@ public class MainActivity extends AppCompatActivity {
                 Button b = (Button) v; //This represents the button they pressed, use it to use the right one
                 //When they push a channel button, this is where the stuff needs to be executed
 
-                b.setBackgroundColor(Color.GREEN); //When they push the button,
+                channelOne.setBackgroundColor(0xFFefd43b);
+                channelTwo.setBackgroundColor(0xFFefd43b);
+                channelThree.setBackgroundColor(0xFFefd43b);
+                globalChannel.setBackgroundColor(0xFFefd43b);
+                channelOne.setTextColor(0xFF116318);
+                channelTwo.setTextColor(0xFF116318);
+                channelThree.setTextColor(0xFF116318);
+                globalChannel.setTextColor(0xFF116318);
+
+                b.setBackgroundColor(0xFF116318); //When they push the button,
+                b.setTextColor(0xFFefd43b);
                 channelOne.setEnabled(true);
                 channelTwo.setEnabled(true);
                 channelThree.setEnabled(true);
@@ -95,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
         };
 
         //ON-CLICK LISTENERS:
-        ptt.setOnClickListener(pushToTalk);
+        ptt.setOnTouchListener(pushToTalk);
 
         channelOne.setOnClickListener(channelSelect);
         channelTwo.setOnClickListener(channelSelect);
