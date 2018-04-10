@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.app.DialogFragment;
 
 import org.w3c.dom.Text;
 
@@ -116,6 +117,8 @@ public class MainActivity extends AppCompatActivity {
                 Button b = (Button) v; //This represents which button they pressed, use it to use the right one
                 //When they push a call button, this is where the stuff needs to be executed******
                 //Make a function to bring up the phone call-ey thing and use it here
+                DialogFragment newFragment = new CallDialogFragment();
+                newFragment.show(getFragmentManager(), "Call");
             }
         };
 
