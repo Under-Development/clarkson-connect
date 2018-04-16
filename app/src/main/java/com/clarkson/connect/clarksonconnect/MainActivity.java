@@ -1,7 +1,6 @@
 package com.clarkson.connect.clarksonconnect;
 
 import android.graphics.Color;
-import android.net.Uri;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,7 +13,6 @@ import android.content.DialogInterface;
 import android.widget.Toast;
 import android.os.Bundle;
 import android.view.View;
-import android.content.Intent;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,8 +20,6 @@ public class MainActivity extends AppCompatActivity {
     private RadioButton channelOne, channelTwo, channelThree, globalChannel;
     private TextView channelSelect;
     private View dialogView;
-    private Intent placeCall = new Intent(Intent.ACTION_CALL);
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,7 +122,6 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
                         //open phone app with campo number here
-                        placeCall.setData(Uri.parse("tel:1-###-###-####"));
                     }
                 });
 
@@ -147,7 +142,6 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
                         //open phone app with food number here
-                        placeCall.setData(Uri.parse("tel:1-###-###-####"));
                     }
                 });
 
