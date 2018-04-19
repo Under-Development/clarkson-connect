@@ -8,7 +8,8 @@
     <string name="channel_two">2</string>
     <string name="channel_three">3</string>
     <string name="global_channel">Global</string>
-    <string name="dialog_call">Are you sure you would like to place this call? (You will launch your default dialer)</string>
+    <string name="dialog_call_security">Are you sure you would like to place this call to Campus Security? (You will launch your default dialer)</string>
+    <string name="dialog_call_food">Are you sure you would like to place this call to the Servery? (You will launch your default dialer)</string>
     <string name="confirm">Yes</string>
     <string name="cancel">No</string>
 
