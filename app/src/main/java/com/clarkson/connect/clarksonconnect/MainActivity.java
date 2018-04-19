@@ -122,7 +122,19 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
-        View.OnClickListener phoneCall = new View.OnClickListener()
+        View.OnClickListener phoneCallFood = new View.OnClickListener()
+        { //below will be what happens when play again button is pressed
+            @Override
+            public void onClick(View v) {
+                Button b = (Button) v; //This represents which button they pressed, use it to use the right one
+                //When they push a call button, this is where the stuff needs to be executed******
+                //Make a function to bring up the phone call-ey thing and use it here
+                DialogFragment newFragment = new FoodCallDialogFragment();
+                newFragment.show(getFragmentManager(), "Call");
+            }
+        };
+
+        View.OnClickListener phoneCallSecurity = new View.OnClickListener()
         { //below will be what happens when play again button is pressed
             @Override
             public void onClick(View v) {
