@@ -1,5 +1,0 @@
-<application>
-  <component name="NotificationConfiguration">
-    <notification groupId="External Executable Critical Failures" displayType="NONE" />
-  </component>
-</application>
