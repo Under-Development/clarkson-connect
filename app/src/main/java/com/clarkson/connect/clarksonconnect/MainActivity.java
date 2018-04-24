@@ -1,5 +1,8 @@
 package com.clarkson.connect.clarksonconnect;
 
+import android.Manifest;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -358,16 +361,18 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ActivityCompat.requestPermissions(MainActivity.this,
+                new String[]{Manifest.permission.CALL_PHONE}, 3);
         //chatz wifi on
-        if (wifiManager.isWifiEnabled()) {
+        /*if (wifiManager.isWifiEnabled()) {
 //                            wifiManager.setWifiEnabled(false);
         } else {
             wifiManager.setWifiEnabled(true);
 //                            btnOnOff.setText("OFF");
-        }
+        }*/
 
         //chatz wifi p2p discover peers
-        mManager.discoverPeers(mChannel, new WifiP2pManager.ActionListener() {
+        /*mManager.discoverPeers(mChannel, new WifiP2pManager.ActionListener() {
             @Override
             public void onSuccess() {
                 //   ConnectionStatus.setText("Discovery Started");
@@ -377,7 +382,7 @@ public class MainActivity extends AppCompatActivity {
             public void onFailure(int i) {
                 //     ConnectionStatus.setText("Discover Starting Failed");
             }
-        });
+        });*/
 
         //chatz connect to first available person
         try {
@@ -581,7 +586,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Button b = (Button) v; //This represents which button they pressed, use it to use the right one
                 //When they push a call button, this is where the stuff needs to be executed******
-                //Make a function to bring up the phone call-ey thing and use it here
+                //Make a function to bring up the phone call-ey thing and use it her
+
+                if (ActivityCompat.checkSelfPermission(MainActivity.this,
+                        Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    return;
+                }
+
                 DialogFragment newFragment = new FoodCallDialogFragment();
                 newFragment.show(getFragmentManager(), "Call");
             }
@@ -599,6 +610,7 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
+
         //ON-CLICK LISTENERS:
         ptt.setOnTouchListener(pushToTalk);
 
@@ -607,8 +619,8 @@ public class MainActivity extends AppCompatActivity {
         channelThree.setOnClickListener(channelSelect);
         globalChannel.setOnClickListener(channelSelect);
 
-        callFood.setOnClickListener(phoneCallSecurity);
-        callCampo.setOnClickListener(phoneCallFood);
+        callFood.setOnClickListener(phoneCallFood);
+        callCampo.setOnClickListener(phoneCallSecurity);
 
     }
 }

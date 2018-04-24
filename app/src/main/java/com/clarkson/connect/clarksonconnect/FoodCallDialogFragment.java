@@ -1,10 +1,15 @@
 package com.clarkson.connect.clarksonconnect;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 
 public class FoodCallDialogFragment extends DialogFragment {
     @Override
@@ -14,7 +19,9 @@ public class FoodCallDialogFragment extends DialogFragment {
         builder.setMessage(R.string.dialog_call_food)
                 .setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        //Open the Phone app and dial the number
+                        Intent callIntent = new Intent(Intent.ACTION_CALL);
+                        callIntent.setData(Uri.parse("tel:1-802-291-3030"));
+                        startActivity(callIntent);
                     }
                 })
                 .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {

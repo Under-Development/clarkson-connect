@@ -13,17 +13,19 @@ public class CallDialogFragment extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Use the Builder class for convenient dialog construction
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        final Intent phoneIntent = new Intent(Intent.ACTION_CALL);
         builder.setMessage(R.string.dialog_call_security)
                 .setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         //Open the Phone app and dial the number
-                        phoneIntent.setData(Uri.parse("tel:1-315-265-2031"));
+                        Intent callIntent = new Intent(Intent.ACTION_CALL);
+                        callIntent.setData(Uri.parse("tel:1-802-291-3030"));
+                        startActivity(callIntent);
                     }
                 })
                 .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         // User cancelled the dialog
+                        dialog.cancel();
                     }
                 });
         // Create the AlertDialog object and return it
