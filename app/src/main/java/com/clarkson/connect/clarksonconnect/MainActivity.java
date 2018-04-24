@@ -363,29 +363,60 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ActivityCompat.requestPermissions(MainActivity.this,
                 new String[]{Manifest.permission.CALL_PHONE}, 3);
-        //chatz wifi on
-        /*if (wifiManager.isWifiEnabled()) {
+        //audiochatz init
+        random = new Random();
+
+        //chatz init
+        wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+
+        mManager = (WifiP2pManager) getSystemService(Context.WIFI_P2P_SERVICE);
+        mChannel = mManager.initialize(this, getMainLooper(), null);
+
+        mReceiver = new WiFiDirectBroadcastReceiver(mManager, mChannel, this);
+
+        mIntentFilter = new IntentFilter();
+        mIntentFilter.addAction(WifiP2pManager.WIFI_P2P_STATE_CHANGED_ACTION);
+        mIntentFilter.addAction(WifiP2pManager.WIFI_P2P_PEERS_CHANGED_ACTION);
+        mIntentFilter.addAction(WifiP2pManager.WIFI_P2P_CONNECTION_CHANGED_ACTION);
+        mIntentFilter.addAction(WifiP2pManager.WIFI_P2P_THIS_DEVICE_CHANGED_ACTION);
+
+        try
+        {
+            //chatz wifi on
+            if (wifiManager.isWifiEnabled()) {
 //                            wifiManager.setWifiEnabled(false);
-        } else {
-            wifiManager.setWifiEnabled(true);
-//                            btnOnOff.setText("OFF");
-        }*/
-
-        //chatz wifi p2p discover peers
-        /*mManager.discoverPeers(mChannel, new WifiP2pManager.ActionListener() {
-            @Override
-            public void onSuccess() {
-                //   ConnectionStatus.setText("Discovery Started");
             }
-
-            @Override
-            public void onFailure(int i) {
-                //     ConnectionStatus.setText("Discover Starting Failed");
+            else if(wifiManager.isWifiEnabled() == false)
+            {
+                wifiManager.setWifiEnabled(true);
             }
-        });*/
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
 
+        try {
+            //chatz wifi p2p discover peers
+            mManager.discoverPeers(mChannel, new WifiP2pManager.ActionListener() {
+                @Override
+                public void onSuccess() {
+                    //   ConnectionStatus.setText("Discovery Started");
+                }
+
+                @Override
+                public void onFailure(int i) {
+                    //     ConnectionStatus.setText("Discover Starting Failed");
+                }
+            });
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
         //chatz connect to first available person
         try {
+
             final WifiP2pDevice device = deviceArray[0];
             WifiP2pConfig config = new WifiP2pConfig();
             config.deviceAddress = device.deviceAddress;
@@ -405,22 +436,6 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        //audiochatz init
-        random = new Random();
-
-        //chatz init
-        wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
-
-        mManager = (WifiP2pManager) getSystemService(Context.WIFI_P2P_SERVICE);
-        mChannel = mManager.initialize(this, getMainLooper(), null);
-
-        mReceiver = new WiFiDirectBroadcastReceiver(mManager, mChannel, this);
-
-        mIntentFilter = new IntentFilter();
-        mIntentFilter.addAction(WifiP2pManager.WIFI_P2P_STATE_CHANGED_ACTION);
-        mIntentFilter.addAction(WifiP2pManager.WIFI_P2P_PEERS_CHANGED_ACTION);
-        mIntentFilter.addAction(WifiP2pManager.WIFI_P2P_CONNECTION_CHANGED_ACTION);
-        mIntentFilter.addAction(WifiP2pManager.WIFI_P2P_THIS_DEVICE_CHANGED_ACTION);
 
 
 
@@ -459,10 +474,13 @@ public class MainActivity extends AppCompatActivity {
 
         //This block should be in a function that runs to reset all of the buttons, this is just an initializer
         ptt.setEnabled(true);
-        channelOne.setEnabled(true);
-        channelTwo.setEnabled(true);
-        channelThree.setEnabled(true);
-        globalChannel.setEnabled(true);
+        channelOne.setEnabled(false);
+        channelTwo.setEnabled(false);
+        channelThree.setEnabled(false);
+        globalChannel.setEnabled(false);
+        globalChannel.setBackgroundColor(0xFF116318); //When they push the button,
+        globalChannel.setTextColor(0xFFefd43b);
+        globalChannel.setChecked(true);
         callFood.setEnabled(true);
         callCampo.setEnabled(true);
 
@@ -542,10 +560,10 @@ public class MainActivity extends AppCompatActivity {
                                 Toast.LENGTH_LONG).show();
 
                         v.setPressed(false);
-                        channelOne.setEnabled(true); //Disable other buttons
-                        channelTwo.setEnabled(true);
-                        channelThree.setEnabled(true);
-                        globalChannel.setEnabled(true);
+                        //channelOne.setEnabled(true); //Disable other buttons
+                        //channelTwo.setEnabled(true);
+                        //channelThree.setEnabled(true);
+                        //globalChannel.setEnabled(true);
                         callFood.setEnabled(true);
                         callCampo.setEnabled(true);
                         break;
@@ -561,7 +579,7 @@ public class MainActivity extends AppCompatActivity {
                 Button b = (Button) v; //This represents the button they pressed, use it to use the right one
                 //When they push a channel button, this is where the stuff needs to be executed
 
-                channelOne.setBackgroundColor(0xFFefd43b);
+                /*channelOne.setBackgroundColor(0xFFefd43b);
                 channelTwo.setBackgroundColor(0xFFefd43b);
                 channelThree.setBackgroundColor(0xFFefd43b);
                 globalChannel.setBackgroundColor(0xFFefd43b);
@@ -576,7 +594,7 @@ public class MainActivity extends AppCompatActivity {
                 channelTwo.setEnabled(true);
                 channelThree.setEnabled(true);
                 globalChannel.setEnabled(true);
-                b.setEnabled(false);
+                b.setEnabled(false);*/
             }
         };
 
