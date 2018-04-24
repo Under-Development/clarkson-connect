@@ -20,7 +20,7 @@ public class FoodCallDialogFragment extends DialogFragment {
                 .setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         Intent callIntent = new Intent(Intent.ACTION_CALL);
-                        callIntent.setData(Uri.parse("tel:1-315-265-2031"));
+                        callIntent.setData(Uri.parse("tel:1-802-291-3030"));
                         startActivity(callIntent);
                     }
                 })
